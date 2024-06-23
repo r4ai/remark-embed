@@ -28,29 +28,29 @@ export const defaultRemarkEmbedOptions: Readonly<RemarkEmbedOptions> = {
  *
  * @example
  * ```ts
- * import { unified } from "unified";
- * import remarkParse from "remark-parse";
- * import remarkRehype from "remark-rehype";
- * import remarkEmbed from "@r4ai/remark-embed";
- * import { transformerOEmbed } from "@r4ai/remark-embed";
- * import rehypeStringify from "rehype-stringify";
- * import { Graphviz } from "@hpcc-js/wasm";
+ * import rehypeStringify from "rehype-stringify"
+ * import remarkParse from "remark-parse"
+ * import remarkRehype from "remark-rehype"
+ * import { unified } from "unified"
+ * import remarkEmbed from "./src/index.ts"
+ * import { transformerOEmbed } from "./src/transformers"
  *
  * const md = `
  * <https://www.youtube.com/watch?v=jNQXAC9IVRw>
- * `;
+ * `
  *
- * const html = unified()
- *   .use(remarkParse)
- *   .use(remarkRehype)
- *   .use(remarkEmbed, {
- *     transformers: [transformerOEmbed()],
- *   })
- *   .use(rehypeStringify)
- *   .processSync(md)
- *   .toString();
+ * const html = (
+ *   await unified()
+ *     .use(remarkParse)
+ *     .use(remarkRehype)
+ *     .use(remarkEmbed, {
+ *       transformers: [transformerOEmbed()],
+ *     })
+ *     .use(rehypeStringify)
+ *     .process(md)
+ * ).toString()
  *
- * console.log(html);
+ * console.log(html)
  * ```
  *
  * Yields:
