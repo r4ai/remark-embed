@@ -1,5 +1,5 @@
 {
-  "name": "remark-oembed",
+  "name": "@r4ai/remark-embed",
   "type": "module",
   "version": "0.1.2",
   "scripts": {
