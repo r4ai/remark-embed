@@ -1,5 +1,11 @@
 # remark-oembed
 
+## 0.1.2
+
+### Patch Changes
+
+- [#7](https://github.com/r4ai/remark-embed/pull/7) [`afb2c68`](https://github.com/r4ai/remark-embed/commit/afb2c688dbdd9290835626020227b5e2af6219b3) Thanks [@r4ai](https://github.com/r4ai)! - Fix package name in README
+
 ## 0.1.1
 
 ### Patch Changes
