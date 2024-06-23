@@ -10,13 +10,49 @@ A remark plugin to embed the content of the URL.
 
 ## Features
 
-- [oEmbed](https://en.wikipedia.org/wiki/OEmbed) support with [transformerOEmbed](https://jsr.io/@r4ai/remark-embed/doc/transformers/~/transformerOEmbed)
+- [oEmbed](https://en.wikipedia.org/wiki/OEmbed) support with [`transformerOEmbed`](https://jsr.io/@r4ai/remark-embed/doc/transformers/~/transformerOEmbed)
   - YouTube
   - Spotify
   - SpeakerDeck
   - ...
 - Fully customizable with [transformers](https://jsr.io/@r4ai/remark-embed/doc/~/RemarkEmbedOptions.transformers)
   - You can define your own [transformer](https://jsr.io/@r4ai/remark-embed/doc/~/Transformer)
+
+### About this plugin
+
+This plugin makes it possible to rewrite a paragraph containing only a URL, such as the following, into any element through the [transformer](https://jsr.io/@r4ai/remark-embed/doc/~/Transformer).
+
+```md
+https://example.com/hoge
+```
+
+> [!note]
+> Note that URLs such as the following will not be converted:
+>
+> - `according to https://example.com/hoge`
+> - `[example](https://example.com/hoge)`
+>
+> Also, please put a blank line above and below the URL.
+
+### Transformer
+
+Currently, this plugin provides the following transformers:
+
+- [`transformerOEmbed`](https://jsr.io/@r4ai/remark-embed/doc/transformers/~/transformerOEmbed) - embeds the URL content by fetching the oEmbed metadata
+
+You can also define your own [transformer](https://jsr.io/@r4ai/remark-embed/doc/~/Transformer). Please refer to the transformer in the [./src/transformers](./src/transformers) directory for details on how to define them.
+
+Following is the algorithm of how this plugin will apply the transformers.
+
+1. let `elements` be a list of link nodes such that each node's parent paragraph contains only one link\
+   Example: `elements = [{ type: 'link', url: 'https://example.com/hoge' }]`
+2. for each `element` of `elements`, do the following in parallel:
+   1. let `url` be the `element`'s url value.
+   2. for each `transformer` of `transformers`, do the following in sequence:
+      1. if `transformer.match(url)` is `true`:
+         1. replace the `element`'s tag name with the result of `transformer.tagName(url)`
+         2. replace the `element`'s properties with the result of `transformer.properties(url)`
+         3. replace the `element`'s children with the result of `transformer.children(url)`
 
 ## Usage
 
