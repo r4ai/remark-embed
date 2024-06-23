@@ -1,4 +1,4 @@
-# @r4ai/remark-oembed
+# @r4ai/remark-embed
 
 [![JSR](https://jsr.io/badges/@r4ai/remark-embed)](https://jsr.io/@r4ai/remark-embed)
 [![codecov](https://codecov.io/gh/r4ai/remark-embed/graph/badge.svg?token=B9EZXC0PR8)](https://codecov.io/gh/r4ai/remark-embed)
