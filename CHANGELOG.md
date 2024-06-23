@@ -1,4 +1,4 @@
-# remark-oembed
+# @r4ai/remark-embed
 
 ## 0.1.2
 
