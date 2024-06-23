@@ -154,6 +154,20 @@ export const defaultTransformerOEmbedOptions: Required<
  * A transformer for oEmbed.
  * Embeds the content of the URL using the oEmbed metadata.
  * @see {@link https://oembed.com/ | oembed.com}
+ *
+ * @example
+ * ```ts
+ *  const html = (
+ *   await unified()
+ *     .use(remarkParse)
+ *     .use(remarkRehype)
+ *     .use(remarkEmbed, {
+ *       transformers: [transformerOEmbed()],
+ *     })
+ *     .use(rehypeStringify)
+ *     .process(md)
+ * ).toString()
+ * ```
  */
 export const transformerOEmbed = (
   _options?: TransformerOEmbedOptions,

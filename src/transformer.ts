@@ -1,5 +1,8 @@
 import type { ElementContent, Properties } from "hast"
 
+/**
+ * For example implementations, see the [transformers](./transformers/index.ts) directory.
+ */
 export type Transformer = {
   /**
    * The name of the transformer.
