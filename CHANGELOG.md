@@ -1,5 +1,11 @@
 # @r4ai/remark-embed
 
+## 0.1.3
+
+### Patch Changes
+
+- [#9](https://github.com/r4ai/remark-embed/pull/9) [`fca68cd`](https://github.com/r4ai/remark-embed/commit/fca68cd7abf866a46a978539686122490823f641) Thanks [@r4ai](https://github.com/r4ai)! - Improve Features section in README.md
+
 ## 0.1.2
 
 ### Patch Changes
