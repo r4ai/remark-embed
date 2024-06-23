@@ -1,0 +1,41 @@
+{
+  "name": "remark-oembed",
+  "type": "module",
+  "version": "0.0.0",
+  "scripts": {
+    "prepare": "lefthook install",
+    "check": "bunx @biomejs/biome check .",
+    "check:write": "bunx @biomejs/biome check --write .",
+    "test": "vitest",
+    "changeset": "changeset",
+    "changeset:version": "changeset version && bun run .github/scripts/sync-package-version.ts",
+    "publish": "jsr publish"
+  },
+  "dependencies": {
+    "defu": "^6.1.4",
+    "hast-util-from-html-isomorphic": "^2.0.0",
+    "unfurl.js": "^6.4.0",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.2",
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.5",
+    "@types/bun": "^1.1.5",
+    "@types/hast": "^3.0.4",
+    "@types/jsdom": "^21.1.7",
+    "@types/mdast": "^4.0.4",
+    "@vitest/coverage-v8": "^1.6.0",
+    "dedent": "^1.5.3",
+    "jsdom": "^24.1.0",
+    "jsr": "^0.12.4",
+    "lefthook": "^1.6.18",
+    "msw": "^2.3.1",
+    "rehype-stringify": "^10.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.0",
+    "typescript": "^5.5.2",
+    "unified": "^11.0.5",
+    "vitest": "^1.6.0"
+  }
+}

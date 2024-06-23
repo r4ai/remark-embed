@@ -1,0 +1,13 @@
+{
+  "$schema": "https://jsr.io/schema/config-file.v1.json",
+  "name": "@r4ai/remark-embed",
+  "version": "0.0.0",
+  "exports": {
+    ".": "./src/index.ts",
+    "./transformers": "./src/transformers/index.ts"
+  },
+  "publish": {
+    "exclude": ["**/*.test.ts", "src/test"],
+    "include": ["LICENSE", "README.md", "src/**/*.ts"]
+  }
+}
