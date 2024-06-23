@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
       - name: Check with Biome
-        uses: bun run check
+        run: bun run check
 
   test:
     runs-on: ubuntu-latest
