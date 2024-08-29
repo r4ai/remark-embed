@@ -8,7 +8,7 @@
  * import remarkParse from "remark-parse"
  * import remarkRehype from "remark-rehype"
  * import { unified } from "unified"
- * import remarkEmbed from "./src/index.ts"
+ * import remarkEmbed from "./src/index.js"
  * import { transformerOEmbed } from "./src/transformers"
  *
  * const md = `
@@ -49,10 +49,10 @@
  * ```
  */
 
-export { type Transformer } from "./transformer.ts"
+export { type Transformer } from "./transformer.js"
 export {
   defaultRemarkEmbedOptions,
   remarkEmbed as default,
   remarkEmbed,
   type RemarkEmbedOptions,
-} from "./plugin.ts"
+} from "./plugin.js"

@@ -1,9 +1,9 @@
 import dedent from "dedent"
-import { md2html } from "../../test/utils.ts"
+import { md2html } from "../../test/utils.js"
 
 import { JSDOM } from "jsdom"
 import { beforeAll, describe, expect, test } from "vitest"
-import { transformerOEmbed } from ".."
+import { transformerOEmbed } from "../index.js"
 
 describe(transformerOEmbed.name, async () => {
   let jsdom: JSDOM

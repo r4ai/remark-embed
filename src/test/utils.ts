@@ -4,7 +4,7 @@ import rehypeStringify from "rehype-stringify"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import { unified } from "unified"
-import { type RemarkEmbedOptions, remarkEmbed } from "../index.ts"
+import { type RemarkEmbedOptions, remarkEmbed } from "../index.js"
 
 export const md2html = async (md: string, options: RemarkEmbedOptions) => {
   let hast: hast.Node

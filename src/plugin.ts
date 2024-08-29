@@ -2,7 +2,7 @@ import { defu } from "defu"
 import type { Root } from "mdast"
 import type { Plugin } from "unified"
 import { visit } from "unist-util-visit"
-import type { Transformer } from "./index.ts"
+import type { Transformer } from "./index.js"
 
 /**
  * Options for the {@link remarkEmbed} plugin.
@@ -32,7 +32,7 @@ export const defaultRemarkEmbedOptions: Readonly<RemarkEmbedOptions> = {
  * import remarkParse from "remark-parse"
  * import remarkRehype from "remark-rehype"
  * import { unified } from "unified"
- * import remarkEmbed from "./src/index.ts"
+ * import remarkEmbed from "./src/index.js"
  * import { transformerOEmbed } from "./src/transformers"
  *
  * const md = `
@@ -81,7 +81,7 @@ export const remarkEmbed: Plugin<
   return async (tree, file) => {
     const transforming: Promise<void>[] = []
 
-    visit(tree, "link", (link, index, paragraph) => {
+    visit(tree, "link", (link, _, paragraph) => {
       // Check if the paragraph only contains a single url link
       // e.g. OK: `https://example.com/hoge`
       //      NG: `according to example.com/hoge`
