@@ -62,4 +62,4 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
       - name: Publish dry run (check "slow types" and so on)
-        run: bun run publish --dry-run
+        run: bun run jsr publish --dry-run
