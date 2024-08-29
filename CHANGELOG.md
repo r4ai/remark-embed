@@ -1,5 +1,11 @@
 # @r4ai/remark-embed
 
+## 0.1.4
+
+### Patch Changes
+
+- [#24](https://github.com/r4ai/remark-embed/pull/24) [`48844f4`](https://github.com/r4ai/remark-embed/commit/48844f4247ccaf921dd9c680c3d06bf01880660c) Thanks [@r4ai](https://github.com/r4ai)! - Publish to NPM!
+
 ## 0.1.3
 
 ### Patch Changes
