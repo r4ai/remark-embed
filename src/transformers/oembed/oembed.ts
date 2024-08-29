@@ -2,8 +2,9 @@ import { defu } from "defu"
 import type { ElementContent, Properties } from "hast"
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic"
 import { unfurl } from "unfurl.js"
-import type { Metadata } from "unfurl.js/dist/types"
-import type { Transformer } from "../.."
+import type { Transformer } from "../../index.js"
+
+type Metadata = Awaited<ReturnType<typeof unfurl>>
 
 export type Element = {
   /**

@@ -10,7 +10,7 @@
  * import remarkParse from "remark-parse"
  * import remarkRehype from "remark-rehype"
  * import { unified } from "unified"
- * import remarkEmbed from "./src/index.ts"
+ * import remarkEmbed from "./src/index.js"
  * import { transformerOEmbed } from "./src/transformers"
  *
  * const md = `
@@ -32,4 +32,4 @@
  * ```
  */
 
-export * from "./oembed"
+export * from "./oembed/index.js"

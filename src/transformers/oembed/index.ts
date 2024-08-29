@@ -7,4 +7,4 @@ export {
   type TransformerOEmbedOptions,
   defaultTransformerOEmbedOptions,
   transformerOEmbed,
-} from "./oembed.ts"
+} from "./oembed.js"
