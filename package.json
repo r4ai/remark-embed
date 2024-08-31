@@ -38,6 +38,10 @@
     "./transformers": {
       "import": "./dist/transformers/index.js",
       "types": "./dist/transformers/index.d.ts"
+    },
+    "./transformers/*": {
+      "import": "./dist/transformers/*/index.js",
+      "types": "./dist/transformers/*/index.d.ts"
     }
   },
   "scripts": {
@@ -75,6 +79,7 @@
     "remark-parse": "11.0.0",
     "remark-rehype": "11.1.0",
     "rimraf": "6.0.1",
+    "ts-essentials": "^10.0.2",
     "typescript": "5.5.4",
     "unified": "11.0.5",
     "vitest": "2.0.5"

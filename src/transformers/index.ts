@@ -32,4 +32,13 @@
  * ```
  */
 
-export * from "./oembed/index.js"
+export type { Element } from "./utils.js"
+export {
+  type OEmbedLink,
+  type OEmbedPhoto,
+  type OEmbedRich,
+  type OEmbedVideo,
+  type TransformerOEmbedOptions,
+  defaultTransformerOEmbedOptions,
+  transformerOEmbed,
+} from "./oembed/index.js"

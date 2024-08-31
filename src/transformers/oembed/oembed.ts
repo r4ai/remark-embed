@@ -1,32 +1,12 @@
 import { defu } from "defu"
-import type { ElementContent, Properties } from "hast"
+import type { ElementContent } from "hast"
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic"
+import type { DeepReadonly, DeepRequired } from "ts-essentials"
 import { unfurl } from "unfurl.js"
 import type { Transformer } from "../../index.js"
+import type { Element } from "../utils.js"
 
 type Metadata = Awaited<ReturnType<typeof unfurl>>
-
-export type Element = {
-  /**
-   * The tag name of the element.
-   * @example "iframe", "img", "a"
-   */
-  tagName: string
-
-  /**
-   * The properties of the element.
-   * @example { className: "oembed" }
-   * @example { src: "https://example.com/image.jpg", alt: "Image" }
-   */
-  properties: Properties
-
-  /**
-   * The children of the element.
-   * @example []
-   * @example [{ type: "text", value: "Hello, World!" }]
-   */
-  children: ElementContent[]
-}
 
 export type OEmbedPhoto = Metadata["oEmbed"] & { type: "photo" }
 
@@ -56,8 +36,8 @@ export type TransformerOEmbedOptions = {
    */
   photo?: (
     url: URL,
-    oEmbed: OEmbedPhoto,
-    options: Required<TransformerOEmbedOptions>,
+    oEmbed: DeepReadonly<OEmbedPhoto>,
+    options: DeepRequired<DeepReadonly<TransformerOEmbedOptions>>,
   ) => Element
 
   /**
@@ -72,8 +52,8 @@ export type TransformerOEmbedOptions = {
    */
   video?: (
     url: URL,
-    oEmbed: OEmbedVideo,
-    options: Required<TransformerOEmbedOptions>,
+    oEmbed: DeepReadonly<OEmbedVideo>,
+    options: DeepRequired<DeepReadonly<TransformerOEmbedOptions>>,
   ) => Element
 
   /**
@@ -88,8 +68,8 @@ export type TransformerOEmbedOptions = {
    */
   rich?: (
     url: URL,
-    oEmbed: OEmbedRich,
-    options: Required<TransformerOEmbedOptions>,
+    oEmbed: DeepReadonly<OEmbedRich>,
+    options: DeepRequired<DeepReadonly<TransformerOEmbedOptions>>,
   ) => Element
 
   /**
@@ -104,52 +84,54 @@ export type TransformerOEmbedOptions = {
    */
   link?: (
     url: URL,
-    oEmbed: OEmbedLink,
-    options: Required<TransformerOEmbedOptions>,
+    oEmbed: DeepReadonly<OEmbedLink>,
+    options: DeepRequired<DeepReadonly<TransformerOEmbedOptions>>,
   ) => Element
 }
 
-export const defaultTransformerOEmbedOptions: Required<
-  Readonly<TransformerOEmbedOptions>
-> = {
+export const defaultTransformerOEmbedOptions = {
   postProcess: (html) => html,
-  photo: (_, oEmbed) => ({
-    tagName: "img",
-    properties: {
-      src: oEmbed.url,
-      width: oEmbed.width,
-      height: oEmbed.height,
-      alt: oEmbed.title,
-      className: "oembed-photo",
-      href: null,
-    },
-    children: [],
-  }),
-  video: (_, oEmbed, options) => ({
-    tagName: "div",
-    properties: {
-      className: "oembed-video",
-      href: null,
-    },
-    children: html2hast(options.postProcess(oEmbed.html)),
-  }),
-  rich: (_, oEmbed, options) => ({
-    tagName: "div",
-    properties: {
-      className: "oembed-rich",
-      href: null,
-    },
-    children: html2hast(options.postProcess(oEmbed.html)),
-  }),
-  link: (url) => ({
-    tagName: "a",
-    properties: {
-      href: url.href,
-      className: "oembed-link",
-    },
-    children: [{ type: "text", value: url.href }],
-  }),
-}
+  photo: (_, oEmbed) =>
+    ({
+      tagName: "img",
+      properties: {
+        src: oEmbed.url,
+        width: oEmbed.width,
+        height: oEmbed.height,
+        alt: oEmbed.title,
+        className: "oembed-photo",
+        href: null,
+      },
+      children: [],
+    }) as const,
+  video: (_, oEmbed, options) =>
+    ({
+      tagName: "div",
+      properties: {
+        className: "oembed-video",
+        href: null,
+      },
+      children: html2hast(options.postProcess(oEmbed.html)),
+    }) as const,
+  rich: (_, oEmbed, options) =>
+    ({
+      tagName: "div",
+      properties: {
+        className: "oembed-rich",
+        href: null,
+      },
+      children: html2hast(options.postProcess(oEmbed.html)),
+    }) as const,
+  link: (url) =>
+    ({
+      tagName: "a",
+      properties: {
+        href: url.href,
+        className: "oembed-link",
+      },
+      children: [{ type: "text", value: url.href }],
+    }) as const,
+} as const satisfies DeepRequired<DeepReadonly<TransformerOEmbedOptions>>
 
 /**
  * A transformer for oEmbed.
