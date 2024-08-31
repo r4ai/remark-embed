@@ -44,4 +44,4 @@ jobs:
 
       - name: Publish to JSR
         if: steps.changesets.outputs.publish == 'true'
-        run: bun run jsr publish
+        run: bun run jsr publish --allow-slow-types
