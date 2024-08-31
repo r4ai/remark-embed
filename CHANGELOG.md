@@ -1,5 +1,13 @@
 # @r4ai/remark-embed
 
+## 0.2.0
+
+### Minor Changes
+
+- [`37138c4`](https://github.com/r4ai/remark-embed/commit/37138c4f3182822520c92922654bce5c33240b60) Thanks [@r4ai](https://github.com/r4ai)! - Change the TypeScript type definition of default options to a primitive type.
+
+- [`e84b676`](https://github.com/r4ai/remark-embed/commit/e84b676485b6cb1dde9635dc2be4ef3182a5b732) Thanks [@r4ai](https://github.com/r4ai)! - Add `transformerLinkCard` to generate a link card by fetching the Open Graph metadata
+
 ## 0.1.4
 
 ### Patch Changes
