@@ -10,17 +10,21 @@ A remark plugin to embed the content of the URL.
 
 ## Features
 
-- [oEmbed](https://en.wikipedia.org/wiki/OEmbed) support with [`transformerOEmbed`](https://jsr.io/@r4ai/remark-embed/doc/transformers/~/transformerOEmbed)
+- Embed website using [oEmbed](https://en.wikipedia.org/wiki/OEmbed) by [`transformerOEmbed`](https://jsr.io/@r4ai/remark-embed/doc/transformers/~/transformerOEmbed)
   - YouTube
   - Spotify
   - SpeakerDeck
+  - ...
+- Generate link card using [Open Graph](https://ogp.me/) metadata by [`transformerLinkCard`](https://jsr.io/@r4ai/remark-embed/doc/transformers/~/transformerLinkCard)
+  - Twitter
+  - Facebook
   - ...
 - Fully customizable with [transformers](https://jsr.io/@r4ai/remark-embed/doc/~/RemarkEmbedOptions.transformers)
   - You can define your own [transformer](https://jsr.io/@r4ai/remark-embed/doc/~/Transformer)
 
 ### About this plugin
 
-This plugin makes it possible to rewrite a paragraph containing only a URL, such as the following, into any element through the [transformer](https://jsr.io/@r4ai/remark-embed/doc/~/Transformer).
+This plugin rewrite a paragraph containing only a URL, such as the following, into any element through the [transformer](https://jsr.io/@r4ai/remark-embed/doc/~/Transformer).
 
 ```md
 https://example.com/hoge
@@ -32,13 +36,16 @@ https://example.com/hoge
 > - `according to https://example.com/hoge`
 > - `[example](https://example.com/hoge)`
 >
-> Also, please put a blank line above and below the URL.
+> URL must be the only content in the paragraph.
+>
+> Also, if there is no blank line before and after the paragraph, it will not be converted.
 
 ### Transformer
 
 Currently, this plugin provides the following transformers:
 
 - [`transformerOEmbed`](https://jsr.io/@r4ai/remark-embed/doc/transformers/~/transformerOEmbed) - embeds the URL content by fetching the oEmbed metadata
+- [`transformerLinkCard`](https://jsr.io/@r4ai/remark-embed/doc/transformers/~/transformerLinkCard) - generates a link card by fetching the Open Graph metadata
 
 You can also define your own [transformer](https://jsr.io/@r4ai/remark-embed/doc/~/Transformer). Please refer to the transformer in the [./src/transformers](./src/transformers) directory for details on how to define them.
 

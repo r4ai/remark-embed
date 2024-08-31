@@ -42,3 +42,9 @@ export {
   defaultTransformerOEmbedOptions,
   transformerOEmbed,
 } from "./oembed/index.js"
+export {
+  type LinkInfo,
+  type TransformerLinkCardOptions,
+  defaultTransformerLinkCardOptions,
+  transformerLinkCard,
+} from "./link-card/index.js"
