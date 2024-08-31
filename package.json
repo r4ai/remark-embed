@@ -69,6 +69,7 @@
     "jsdom": "25.0.0",
     "jsr": "0.13.1",
     "lefthook": "1.7.14",
+    "mdast-util-to-hast": "^13.2.0",
     "msw": "2.4.1",
     "rehype-stringify": "10.0.0",
     "remark-parse": "11.0.0",

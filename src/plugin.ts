@@ -1,3 +1,5 @@
+/// <reference types="mdast-util-to-hast" />
+
 import { defu } from "defu"
 import type { Root } from "mdast"
 import type { Plugin } from "unified"
