@@ -68,11 +68,13 @@ import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
-import remarkEmbed from "./src/index.js";
-import { transformerOEmbed } from "./src/transformers";
+import remarkEmbed from "@r4ai/remark-embed";
+import { transformerOEmbed } from "@r4ai/remark-embed/transformers";
+
 const md = `
 <https://www.youtube.com/watch?v=jNQXAC9IVRw>
 `;
+
 const html = (
   await unified()
     .use(remarkParse)
@@ -83,6 +85,7 @@ const html = (
     .use(rehypeStringify)
     .process(md)
 ).toString();
+
 console.log(html);
 ```
 
@@ -90,7 +93,7 @@ Yields:
 
 ```html
 <p>
-  <div class="oembed-video">
+  <div class="oembed oembed-video">
     <iframe
       width="200"
       height="150"
