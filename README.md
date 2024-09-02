@@ -61,6 +61,38 @@ Following is the algorithm of how this plugin will apply the transformers.
          2. replace the `element`'s properties with the result of `transformer.properties(url)`
          3. replace the `element`'s children with the result of `transformer.children(url)`
 
+## Installation
+
+- **Bun**:
+
+  ```sh
+  bun add @r4ai/remark-embed
+  ```
+
+- **Deno**:
+
+  ```sh
+  deno add @r4ai/remark-embed
+  ```
+
+- **NPM**:
+
+  ```sh
+  npm install @r4ai/remark-embed
+  ```
+
+- **PNPM**:
+
+  ```sh
+  pnpm add @r4ai/remark-embed
+  ```
+
+- **Yarn**:
+
+  ```sh
+  yarn add @r4ai/remark-embed
+  ```
+
 ## Usage
 
 ```ts
