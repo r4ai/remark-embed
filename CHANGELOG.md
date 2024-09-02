@@ -1,5 +1,17 @@
 # @r4ai/remark-embed
 
+## 0.3.0
+
+### Minor Changes
+
+- [#33](https://github.com/r4ai/remark-embed/pull/33) [`d58bd35`](https://github.com/r4ai/remark-embed/commit/d58bd35305024e8ce45559947708018502658f2f) Thanks [@r4ai](https://github.com/r4ai)! - Add "oembed" class to oemed elements
+
+- [#30](https://github.com/r4ai/remark-embed/pull/30) [`ca57635`](https://github.com/r4ai/remark-embed/commit/ca576357accc5dc394fd1d07667247944900ef79) Thanks [@r4ai](https://github.com/r4ai)! - Fix a bug not to generate link card on sites where twitter card meta data isn't provided
+
+### Patch Changes
+
+- [#33](https://github.com/r4ai/remark-embed/pull/33) [`d58bd35`](https://github.com/r4ai/remark-embed/commit/d58bd35305024e8ce45559947708018502658f2f) Thanks [@r4ai](https://github.com/r4ai)! - Add installation section in README
+
 ## 0.2.0
 
 ### Minor Changes
