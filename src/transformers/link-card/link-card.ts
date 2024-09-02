@@ -5,7 +5,7 @@ import type { Transformer } from "../../index.js"
 import type { Element } from "../utils.js"
 import { htmlPreset } from "./presets/html.js"
 
-type Metadata = Awaited<ReturnType<typeof unfurl>>
+type Metadata = Partial<Awaited<ReturnType<typeof unfurl>>>
 
 /**
  * The information about a link.
@@ -19,7 +19,7 @@ export type LinkInfo = {
   /**
    * The title of the link.
    */
-  title: string
+  title?: string
 
   /**
    * The description of the link.
@@ -157,20 +157,22 @@ export const transformerLinkCard = (
 }
 
 const getUrlInfo = (url: URL, metadata: Metadata) => ({
-  url: metadata.open_graph.url ?? url.href,
+  url: metadata.open_graph?.url ?? url.href,
   title:
-    metadata.open_graph.title ?? metadata.title ?? metadata.twitter_card.title,
+    metadata.open_graph?.title ??
+    metadata.title ??
+    metadata.twitter_card?.title,
   description:
-    metadata.open_graph.description ??
+    metadata.open_graph?.description ??
     metadata.description ??
-    metadata.twitter_card.description,
+    metadata.twitter_card?.description,
   favicon: metadata.favicon,
   image: {
     src:
-      metadata.open_graph.images?.at(0)?.url ??
-      metadata.twitter_card.images?.at(0)?.url,
+      metadata.open_graph?.images?.at(0)?.url ??
+      metadata.twitter_card?.images?.at(0)?.url,
     alt:
-      metadata.open_graph.images?.at(0)?.alt ??
-      metadata.twitter_card.images?.at(0)?.alt,
+      metadata.open_graph?.images?.at(0)?.alt ??
+      metadata.twitter_card?.images?.at(0)?.alt,
   },
 })
