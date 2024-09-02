@@ -59,5 +59,5 @@ const fileContentResponse = async (fileName: string, filePath: string) => {
 }
 
 export const handlers = await generateWebHandlers(
-  path.resolve(import.meta.dirname, "fixtures/web"),
+  path.resolve(import.meta.dirname, "web"),
 )

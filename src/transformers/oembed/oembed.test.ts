@@ -1,97 +1,93 @@
-import dedent from "dedent"
-import { md2html } from "../../test/utils.js"
+/// <reference lib="dom" />
 
-import { JSDOM } from "jsdom"
-import { beforeAll, describe, expect, test } from "vitest"
+import { screen } from "@testing-library/dom"
+import dedent from "dedent"
+import { describe, expect, test } from "vitest"
+import { md2html, render } from "../../test/utils.js"
 import { transformerOEmbed } from "../index.js"
 
 describe(transformerOEmbed.name, async () => {
-  let jsdom: JSDOM
-  let parser: DOMParser
-
-  beforeAll(() => {
-    jsdom = new JSDOM()
-    parser = new jsdom.window.DOMParser()
-  })
-
-  test("YouTube video should be embedded with iframe", async () => {
+  test("Link should be embedded", async () => {
     const md = dedent`
-      <https://www.youtube.com/watch?v=jNQXAC9IVRw>
+      <https://oembed.example.com/link>
     `
 
     const { html } = await md2html(md, {
       transformers: [transformerOEmbed()],
     })
-    const doc = parser.parseFromString(html, "text/html")
-    const container = doc.querySelector(".oembed-video")
-    const iframe = container?.querySelector("iframe")
+    render(html)
 
-    expect(container).not.toBeNull()
-    expect(iframe).not.toBeNull()
-    expect(iframe?.getAttribute("src")).toBe(
-      "https://www.youtube.com/embed/jNQXAC9IVRw?feature=oembed",
-    )
-    expect(iframe?.getAttribute("width")).toBe("200")
-    expect(iframe?.getAttribute("height")).toBe("150")
-    expect(iframe?.getAttribute("title")).toBe("Me at the zoo")
+    const linkCard = screen.getByRole("link")
+    expect(linkCard).toHaveAttribute("href", "https://oembed.example.com/link")
+    expect(linkCard).toHaveTextContent("https://oembed.example.com/link")
+    expect(linkCard).toHaveAttribute("class", "oembed-link")
   })
 
-  test("Spotify playlist should be embedded with iframe", async () => {
+  test("Photo should be embedded", async () => {
     const md = dedent`
-      <https://open.spotify.com/playlist/37i9dQZF1DXafb0IuPwJyF?si=9b42af02630c401a>
+      <https://oembed.example.com/photo>
     `
 
     const { html } = await md2html(md, {
       transformers: [transformerOEmbed()],
     })
-    const doc = parser.parseFromString(html, "text/html")
-    const container = doc.querySelector(".oembed-rich")
-    const iframe = container?.querySelector("iframe")
+    render(html)
 
-    expect(container).not.toBeNull()
-    expect(iframe).not.toBeNull()
-    expect(iframe?.getAttribute("src")).toBe(
-      "https://open.spotify.com/embed/playlist/37i9dQZF1DXafb0IuPwJyF?utm_source=oembed",
-    )
-    expect(iframe?.getAttribute("width")).toBe("100%")
-    expect(iframe?.getAttribute("height")).toBe("352")
-    expect(iframe?.getAttribute("title")).toBe(
-      "Spotify Embed: Tokyo Super Hits! ",
-    )
+    const photo = screen.getByRole("img")
+    expect(photo).not.toHaveAttribute("href")
+    expect(photo).toHaveAttribute("src")
+    expect(photo).toHaveAttribute("width")
+    expect(photo).toHaveAttribute("height")
+    expect(photo).toHaveAttribute("class", "oembed-photo")
   })
 
-  test("Bluesky post should be embedded directly", async () => {
+  test("Video should be embedded", async () => {
     const md = dedent`
-      <https://bsky.app/profile/r4ai.dev/post/3k44wdxjqgo27>
+      <https://oembed.example.com/video>
     `
 
     const { html } = await md2html(md, {
       transformers: [transformerOEmbed()],
     })
-    const doc = parser.parseFromString(html, "text/html")
-    const container = doc.querySelector(".oembed-rich")
+    render(html)
 
-    expect(container).not.toBeNull()
-    expect(container?.innerHTML).not.toBeNull()
+    const video = document.querySelector(".oembed-video")
+    expect(video).not.toBeNull()
+    expect(video).not.toHaveAttribute("href")
+    expect(video).toHaveAttribute("class", "oembed-video")
+    expect(video?.querySelector("object")).not.toBeNull()
   })
 
-  test("Flickr photo should be embedded with img", async () => {
+  test("Rich should be embedded", async () => {
     const md = dedent`
-      <https://www.flickr.com/photos/bees/2341623661/>
+      <https://oembed.example.com/rich>
     `
 
     const { html } = await md2html(md, {
       transformers: [transformerOEmbed()],
     })
-    const doc = parser.parseFromString(html, "text/html")
-    const img = doc.querySelector(".oembed-photo")
+    render(html)
 
-    expect(img).not.toBeNull()
-    expect(img?.getAttribute("src")).toBe(
-      "https://live.staticflickr.com/3123/2341623661_7c99f48bbf_b.jpg",
-    )
-    expect(img?.getAttribute("width")).toBe("1024")
-    expect(img?.getAttribute("height")).toBe("683")
-    expect(img?.getAttribute("alt")).toBe("ZB8T0193")
+    const rich = document.querySelector(".oembed-rich")
+    expect(rich).not.toBeNull()
+    expect(rich).not.toHaveAttribute("href")
+    expect(rich).toHaveAttribute("class", "oembed-rich")
+    expect(rich?.querySelector("iframe")).not.toBeNull()
+  })
+
+  test("Website without oEmbed should not be embedded", async () => {
+    const md = dedent`
+      <https://www.example.com>
+    `
+
+    const { html } = await md2html(md, {
+      transformers: [transformerOEmbed()],
+    })
+    render(html)
+
+    const link = screen.getByRole("link")
+    expect(link).toHaveAttribute("href", "https://www.example.com")
+    expect(link).toHaveTextContent("https://www.example.com")
+    expect(link.classList).not.toContain("oembed")
   })
 })
