@@ -1,5 +1,11 @@
 # @r4ai/remark-embed
 
+## 0.3.1
+
+### Patch Changes
+
+- [`712fb91`](https://github.com/r4ai/remark-embed/commit/712fb91df99c07df5723863ab6be33f3c35448eb) Thanks [@r4ai](https://github.com/r4ai)! - fix tsconfig
+
 ## 0.3.0
 
 ### Minor Changes
