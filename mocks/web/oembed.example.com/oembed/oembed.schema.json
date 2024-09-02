@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "oEmbed",
+  "description": "oEmbed schema",
+  "type": "object",
+  "properties": {
+    "type": {
+      "enum": ["link", "rich", "photo", "video"]
+    },
+    "version": {
+      "enum": ["1.0"]
+    },
+    "title": {
+      "type": "string"
+    },
+    "author_name": {
+      "type": "string"
+    },
+    "author_url": {
+      "type": "string"
+    },
+    "provider_name": {
+      "type": "string"
+    },
+    "provider_url": {
+      "type": "string"
+    },
+    "cache_age": {
+      "type": "integer"
+    },
+    "thumbnail_url": {
+      "type": "string"
+    },
+    "thumbnail_width": {
+      "type": "integer"
+    },
+    "thumbnail_height": {
+      "type": "integer"
+    }
+  },
+  "required": ["type", "version"],
+
+  "oneOf": [
+    { "$ref": "#/definitions/link" },
+    { "$ref": "#/definitions/rich" },
+    { "$ref": "#/definitions/photo" },
+    { "$ref": "#/definitions/video" }
+  ],
+
+  "definitions": {
+    "link": {
+      "properties": {
+        "type": { "enum": ["link"] }
+      },
+      "required": ["type"]
+    },
+    "rich": {
+      "properties": {
+        "type": { "enum": ["rich"] },
+        "html": { "type": "string" },
+        "width": { "type": "integer" },
+        "height": { "type": "integer" }
+      },
+      "required": ["type", "html", "width", "height"]
+    },
+    "photo": {
+      "properties": {
+        "type": { "enum": ["photo"] },
+        "url": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        }
+      },
+      "required": ["type", "url", "width", "height"]
+    },
+    "video": {
+      "properties": {
+        "type": { "enum": ["video"] },
+        "html": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        }
+      },
+      "required": ["type", "html", "width", "height"]
+    }
+  }
+}

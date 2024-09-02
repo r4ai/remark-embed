@@ -1,0 +1,5 @@
+{
+  "$schema": "./oembed.schema.json",
+  "type": "link",
+  "version": "1.0"
+}
