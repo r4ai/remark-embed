@@ -1,5 +1,3 @@
-/// <reference lib="dom" />
-
 import type * as hast from "hast"
 import type * as mdast from "mdast"
 import rehypeStringify from "rehype-stringify"

@@ -1,5 +1,3 @@
-/// <reference lib="dom" />
-
 import { screen } from "@testing-library/dom"
 import dedent from "dedent"
 import { describe, expect, test } from "vitest"
