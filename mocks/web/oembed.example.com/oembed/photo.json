@@ -1,0 +1,8 @@
+{
+  "$schema": "./oembed.schema.json",
+  "type": "photo",
+  "version": "1.0",
+  "url": "https://oembed.example.com/images/NCG362.jpeg",
+  "width": 1024,
+  "height": 1024
+}

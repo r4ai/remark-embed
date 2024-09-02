@@ -1,3 +1,5 @@
+/// <reference lib="dom" />
+
 import type * as hast from "hast"
 import type * as mdast from "mdast"
 import rehypeStringify from "rehype-stringify"
@@ -27,4 +29,8 @@ export const md2html = async (md: string, options: RemarkEmbedOptions) => {
   ).toString()
   // @ts-expect-error hast and mdast are not undefined
   return { hast, mdast, html }
+}
+
+export const render = (html: string) => {
+  document.body.innerHTML = html
 }
