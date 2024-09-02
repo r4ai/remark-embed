@@ -99,7 +99,7 @@ export const defaultTransformerOEmbedOptions = {
         width: oEmbed.width,
         height: oEmbed.height,
         alt: oEmbed.title,
-        className: "oembed-photo",
+        className: "oembed oembed-photo",
         href: null,
       },
       children: [],
@@ -108,7 +108,7 @@ export const defaultTransformerOEmbedOptions = {
     ({
       tagName: "div",
       properties: {
-        className: "oembed-video",
+        className: "oembed oembed-video",
         href: null,
       },
       children: html2hast(options.postProcess(oEmbed.html)),
@@ -117,7 +117,7 @@ export const defaultTransformerOEmbedOptions = {
     ({
       tagName: "div",
       properties: {
-        className: "oembed-rich",
+        className: "oembed oembed-rich",
         href: null,
       },
       children: html2hast(options.postProcess(oEmbed.html)),
@@ -127,7 +127,7 @@ export const defaultTransformerOEmbedOptions = {
       tagName: "a",
       properties: {
         href: url.href,
-        className: "oembed-link",
+        className: "oembed oembed-link",
       },
       children: [{ type: "text", value: url.href }],
     }) as const,

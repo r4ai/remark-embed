@@ -20,7 +20,7 @@ describe(transformerOEmbed.name, async () => {
     const linkCard = screen.getByRole("link")
     expect(linkCard).toHaveAttribute("href", "https://oembed.example.com/link")
     expect(linkCard).toHaveTextContent("https://oembed.example.com/link")
-    expect(linkCard).toHaveAttribute("class", "oembed-link")
+    expect(linkCard).toHaveAttribute("class", "oembed oembed-link")
   })
 
   test("Photo should be embedded", async () => {
@@ -38,7 +38,7 @@ describe(transformerOEmbed.name, async () => {
     expect(photo).toHaveAttribute("src")
     expect(photo).toHaveAttribute("width")
     expect(photo).toHaveAttribute("height")
-    expect(photo).toHaveAttribute("class", "oembed-photo")
+    expect(photo).toHaveAttribute("class", "oembed oembed-photo")
   })
 
   test("Video should be embedded", async () => {
@@ -54,7 +54,7 @@ describe(transformerOEmbed.name, async () => {
     const video = document.querySelector(".oembed-video")
     expect(video).not.toBeNull()
     expect(video).not.toHaveAttribute("href")
-    expect(video).toHaveAttribute("class", "oembed-video")
+    expect(video).toHaveAttribute("class", "oembed oembed-video")
     expect(video?.querySelector("object")).not.toBeNull()
   })
 
@@ -71,7 +71,7 @@ describe(transformerOEmbed.name, async () => {
     const rich = document.querySelector(".oembed-rich")
     expect(rich).not.toBeNull()
     expect(rich).not.toHaveAttribute("href")
-    expect(rich).toHaveAttribute("class", "oembed-rich")
+    expect(rich).toHaveAttribute("class", "oembed oembed-rich")
     expect(rich?.querySelector("iframe")).not.toBeNull()
   })
 

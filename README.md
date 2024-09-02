@@ -61,6 +61,38 @@ Following is the algorithm of how this plugin will apply the transformers.
          2. replace the `element`'s properties with the result of `transformer.properties(url)`
          3. replace the `element`'s children with the result of `transformer.children(url)`
 
+## Installation
+
+- **Bun**:
+
+  ```sh
+  bun add @r4ai/remark-embed
+  ```
+
+- **Deno**:
+
+  ```sh
+  deno add @r4ai/remark-embed
+  ```
+
+- **NPM**:
+
+  ```sh
+  npm install @r4ai/remark-embed
+  ```
+
+- **PNPM**:
+
+  ```sh
+  pnpm add @r4ai/remark-embed
+  ```
+
+- **Yarn**:
+
+  ```sh
+  yarn add @r4ai/remark-embed
+  ```
+
 ## Usage
 
 ```ts
@@ -68,11 +100,13 @@ import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
-import remarkEmbed from "./src/index.js";
-import { transformerOEmbed } from "./src/transformers";
+import remarkEmbed from "@r4ai/remark-embed";
+import { transformerOEmbed } from "@r4ai/remark-embed/transformers";
+
 const md = `
 <https://www.youtube.com/watch?v=jNQXAC9IVRw>
 `;
+
 const html = (
   await unified()
     .use(remarkParse)
@@ -83,6 +117,7 @@ const html = (
     .use(rehypeStringify)
     .process(md)
 ).toString();
+
 console.log(html);
 ```
 
@@ -90,7 +125,7 @@ Yields:
 
 ```html
 <p>
-  <div class="oembed-video">
+  <div class="oembed oembed-video">
     <iframe
       width="200"
       height="150"
