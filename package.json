@@ -72,7 +72,7 @@
     "@types/mdast": "4.0.4",
     "@vitest/coverage-v8": "2.0.5",
     "dedent": "1.5.3",
-    "happy-dom": "15.7.3",
+    "happy-dom": "15.7.4",
     "jsr": "0.13.1",
     "lefthook": "1.7.15",
     "mdast-util-to-hast": "13.2.0",
