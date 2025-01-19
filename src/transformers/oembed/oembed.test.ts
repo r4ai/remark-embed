@@ -88,4 +88,43 @@ describe(transformerOEmbed.name, async () => {
     expect(link).toHaveTextContent("https://www.example.com")
     expect(link.classList).not.toContain("oembed")
   })
+
+  test("Twitter tweet should be embedded", async () => {
+    const md = dedent`
+      <https://twitter.com/Interior/status/463440424141459456>
+    `
+
+    const { html } = await md2html(md, {
+      transformers: [transformerOEmbed()],
+    })
+    render(html)
+
+    const rich = document.querySelector(".oembed-rich")
+    expect(rich).not.toBeNull()
+    expect(rich).not.toHaveAttribute("href")
+    expect(rich).toHaveAttribute("class", "oembed oembed-rich")
+    expect(rich?.querySelector(".twitter-tweet")).not.toBeNull()
+  })
+
+  test("Twitter tweet that do not exist should not be embedded", async () => {
+    const md = dedent`
+      <https://twitter.com/Interior/status/46344042414145945>
+    `
+
+    const { html } = await md2html(md, {
+      transformers: [transformerOEmbed()],
+    })
+    render(html)
+
+    const link = screen.getByRole("link")
+    expect(link).toHaveAttribute(
+      "href",
+      "https://twitter.com/Interior/status/46344042414145945",
+    )
+    expect(link).toHaveTextContent(
+      "https://twitter.com/Interior/status/46344042414145945",
+    )
+    const embedded = document.querySelector(".twitter-tweet")
+    expect(embedded).toBeNull()
+  })
 })

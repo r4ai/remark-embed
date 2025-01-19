@@ -1,6 +1,6 @@
 import * as fs from "node:fs/promises"
 import path from "node:path"
-import { http, HttpResponse, type RequestHandler } from "msw"
+import { http, HttpResponse, type RequestHandler, passthrough } from "msw"
 
 const generateWebHandlers = async (dir: string): Promise<RequestHandler[]> => {
   const dirs = await fs.readdir(dir, {
@@ -28,6 +28,11 @@ const generateWebHandlers = async (dir: string): Promise<RequestHandler[]> => {
         fileContentResponse(file.name, fullPath),
       )
     })
+
+  handlers.push(
+    http.get("https://publish.twitter.com/oembed", () => passthrough()),
+  )
+
   return handlers
 }
 
