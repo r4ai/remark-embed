@@ -254,14 +254,19 @@ export const transformerOEmbed = (
         provider.match(url),
       )
       if (provider) {
-        const response = await provider.response(url)
-        if (!response.ok) {
+        try {
+          const response = await provider.response(url)
+          if (!response.ok) {
+            cache.set(url.href, {})
+            return false
+          }
+          const oEmbed = (await response.json()) as OEmbed
+          cache.set(url.href, oEmbed)
+          return true
+        } catch (error) {
           cache.set(url.href, {})
-          return false
+          throw error
         }
-        const oEmbed = (await response.json()) as OEmbed
-        cache.set(url.href, oEmbed)
-        return true
       }
 
       const metadata = await unfurl(url.href)
