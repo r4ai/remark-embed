@@ -1,6 +1,6 @@
 import * as fs from "node:fs/promises"
 import path from "node:path"
-import { http, HttpResponse, type RequestHandler, passthrough } from "msw"
+import { http, HttpResponse, type RequestHandler } from "msw"
 
 const generateWebHandlers = async (dir: string): Promise<RequestHandler[]> => {
   const dirs = await fs.readdir(dir, {
@@ -28,11 +28,6 @@ const generateWebHandlers = async (dir: string): Promise<RequestHandler[]> => {
         fileContentResponse(file.name, fullPath),
       )
     })
-
-  handlers.push(
-    http.get("https://publish.twitter.com/oembed", () => passthrough()),
-  )
-
   return handlers
 }
 
@@ -63,6 +58,51 @@ const fileContentResponse = async (fileName: string, filePath: string) => {
   }
 }
 
-export const handlers = await generateWebHandlers(
-  path.resolve(import.meta.dirname, "web"),
-)
+const generateTwitterOEmbedHandlers = async (
+  dir: string,
+): Promise<RequestHandler[]> => {
+  const urlToResponse = new Map<string | null, Response>()
+
+  const dirents = await fs.readdir(dir, {
+    recursive: true,
+    withFileTypes: true,
+  })
+  for (const dirent of dirents) {
+    if (!dirent.isFile() || !dirent.name.endsWith(".json")) continue
+
+    const fullPath = path.join(dirent.parentPath, dirent.name)
+
+    const urlWithoutScheme = fullPath.replace(
+      new RegExp(`^${path.resolve(dir)}/`),
+      "",
+    )
+    const urlDomain = urlWithoutScheme.split(path.sep)[0]
+    const urlPath = urlWithoutScheme
+      .split(path.sep)
+      .slice(1)
+      .join("/")
+      .replace(/\.json$/, "")
+
+    const url = new URL(urlPath, `https://${urlDomain}`).href
+
+    const content = await fs.readFile(fullPath, "utf-8")
+
+    urlToResponse.set(url, HttpResponse.json(JSON.parse(content)))
+  }
+
+  return [
+    http.get(
+      "https://publish.twitter.com/oembed",
+      ({ request }) =>
+        urlToResponse.get(new URL(request.url).searchParams.get("url")) ??
+        new HttpResponse(null, { status: 404 }),
+    ),
+  ]
+}
+
+export const handlers = [
+  ...(await generateWebHandlers(path.resolve(import.meta.dirname, "web"))),
+  ...(await generateTwitterOEmbedHandlers(
+    path.resolve(import.meta.dirname, "twitter-oembed"),
+  )),
+]
