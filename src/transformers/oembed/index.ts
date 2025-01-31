@@ -1,9 +1,11 @@
 export {
-  type OEmbedLink,
-  type OEmbedPhoto,
-  type OEmbedRich,
-  type OEmbedVideo,
   type TransformerOEmbedOptions,
   defaultTransformerOEmbedOptions,
   transformerOEmbed,
 } from "./oembed.js"
+export type {
+  OEmbedLink,
+  OEmbedPhoto,
+  OEmbedRich,
+  OEmbedVideo,
+} from "./schemas.js"
