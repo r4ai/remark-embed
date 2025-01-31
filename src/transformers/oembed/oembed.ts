@@ -3,20 +3,17 @@ import type { ElementContent } from "hast"
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic"
 import type { DeepReadonly, DeepRequired } from "ts-essentials"
 import { unfurl } from "unfurl.js"
+import * as v from "valibot"
 import type { Transformer } from "../../index.js"
 import type { Element } from "../utils.js"
-
-type Metadata = Awaited<ReturnType<typeof unfurl>>
-
-export type OEmbedPhoto = Metadata["oEmbed"] & { type: "photo" }
-
-export type OEmbedVideo = Metadata["oEmbed"] & { type: "video" }
-
-export type OEmbedRich = Metadata["oEmbed"] & { type: "rich" }
-
-export type OEmbedLink = Metadata["oEmbed"] & { type: "link" }
-
-type OEmbed = OEmbedPhoto | OEmbedVideo | OEmbedRich | OEmbedLink
+import type {
+  OEmbed,
+  OEmbedLink,
+  OEmbedPhoto,
+  OEmbedRich,
+  OEmbedVideo,
+} from "./schemas.js"
+import { OEmbedSchema } from "./schemas.js"
 
 export type TransformerOEmbedOptions = {
   /**
@@ -260,7 +257,7 @@ export const transformerOEmbed = (
             cache.set(url.href, {})
             return false
           }
-          const oEmbed = (await response.json()) as OEmbed
+          const oEmbed = v.parse(OEmbedSchema, await response.json())
           cache.set(url.href, oEmbed)
           return true
         } catch (error) {
