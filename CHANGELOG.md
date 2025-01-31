@@ -1,5 +1,11 @@
 # @r4ai/remark-embed
 
+## 0.4.0
+
+### Minor Changes
+
+- [#158](https://github.com/r4ai/remark-embed/pull/158) [`79047e3`](https://github.com/r4ai/remark-embed/commit/79047e31930d37af54152438d2b434b186f77a03) Thanks [@reminjp](https://github.com/reminjp)! - Add a providers option in transformerOEmbed and support Twitter oEmbed API
+
 ## 0.3.1
 
 ### Patch Changes
