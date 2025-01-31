@@ -17,7 +17,7 @@ jobs:
       id-token: write # The OIDC ID token is used for authentication with JSR.
     steps:
       - name: Checkout repository
-        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Setup Node.js and Bun
         uses: jdx/mise-action@f8dfbcc150159126838e44b882bf34bd98fd90f3 # v2
