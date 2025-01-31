@@ -43,5 +43,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to JSR
-        if: steps.changesets.outputs.publish == 'true'
+        if: steps.changesets.outputs.published == 'true'
         run: bun run jsr publish --allow-slow-types
