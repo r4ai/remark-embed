@@ -49,7 +49,7 @@
  * ```
  */
 
-export { type Transformer } from "./transformer.js"
+export type { Transformer } from "./transformer.js"
 export {
   defaultRemarkEmbedOptions,
   remarkEmbed as default,
