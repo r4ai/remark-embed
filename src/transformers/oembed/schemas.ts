@@ -1,6 +1,17 @@
 import * as v from "valibot"
 
-const OEmbedBaseSchema = v.object({
+export type OEmbedBase = {
+  version: string
+  title?: string | undefined
+  author_name?: string | undefined
+  author_url?: string | undefined
+  provider_name?: string | undefined
+  provider_url?: string | undefined
+  cache_age?: number | undefined
+  thumbnails?: [{ url?: string; width?: number; height?: number }] | undefined
+}
+
+export const OEmbedBaseSchema = v.object({
   version: v.string(),
   title: v.optional(v.string()),
   author_name: v.optional(v.string()),
@@ -21,7 +32,7 @@ const OEmbedBaseSchema = v.object({
   ),
 })
 
-const OEmbedPhotoSchema = v.object({
+export const OEmbedPhotoSchema = v.object({
   ...OEmbedBaseSchema.entries,
   type: v.literal("photo"),
   url: v.string(),
@@ -29,9 +40,14 @@ const OEmbedPhotoSchema = v.object({
   height: v.number(),
 })
 
-export type OEmbedPhoto = v.InferOutput<typeof OEmbedPhotoSchema>
+export type OEmbedPhoto = OEmbedBase & {
+  type: "photo"
+  url: string
+  width: number
+  height: number
+}
 
-const OEmbedVideoSchema = v.object({
+export const OEmbedVideoSchema = v.object({
   ...OEmbedBaseSchema.entries,
   type: v.literal("video"),
   html: v.string(),
@@ -39,16 +55,23 @@ const OEmbedVideoSchema = v.object({
   height: v.number(),
 })
 
-export type OEmbedVideo = v.InferOutput<typeof OEmbedVideoSchema>
+export type OEmbedVideo = OEmbedBase & {
+  type: "video"
+  html: string
+  width: number
+  height: number
+}
 
-const OEmbedLinkSchema = v.object({
+export const OEmbedLinkSchema = v.object({
   ...OEmbedBaseSchema.entries,
   type: v.literal("link"),
 })
 
-export type OEmbedLink = v.InferOutput<typeof OEmbedLinkSchema>
+export type OEmbedLink = OEmbedBase & {
+  type: "link"
+}
 
-const OEmbedRichSchema = v.object({
+export const OEmbedRichSchema = v.object({
   ...OEmbedBaseSchema.entries,
   type: v.literal("rich"),
   html: v.string(),
@@ -59,7 +82,12 @@ const OEmbedRichSchema = v.object({
   height: v.nullable(v.number()),
 })
 
-export type OEmbedRich = v.InferOutput<typeof OEmbedRichSchema>
+export type OEmbedRich = OEmbedBase & {
+  type: "rich"
+  html: string
+  width: number | null
+  height: number | null
+}
 
 export const OEmbedSchema = v.union([
   OEmbedPhotoSchema,
@@ -68,4 +96,4 @@ export const OEmbedSchema = v.union([
   OEmbedRichSchema,
 ])
 
-export type OEmbed = v.InferOutput<typeof OEmbedSchema>
+export type OEmbed = OEmbedPhoto | OEmbedVideo | OEmbedLink | OEmbedRich

@@ -1,7 +1,7 @@
 import { defu } from "defu"
-import type { DeepReadonly, DeepRequired } from "ts-essentials"
 import { unfurl } from "unfurl.js"
 import type { Transformer } from "../../index.js"
+import type { DeepReadonly, DeepRequired } from "../utils.js"
 import type { Element } from "../utils.js"
 import { htmlPreset } from "./presets/html.js"
 
@@ -76,8 +76,9 @@ export type TransformerLinkCardOptions = {
 /**
  * The default options for the {@link transformerLinkCard}.
  */
-export const defaultTransformerLinkCardOptions =
-  htmlPreset() satisfies DeepRequired<DeepReadonly<TransformerLinkCardOptions>>
+export const defaultTransformerLinkCardOptions: DeepRequired<
+  DeepReadonly<TransformerLinkCardOptions>
+> = htmlPreset()
 
 /**
  * A transformer to generate link cards.

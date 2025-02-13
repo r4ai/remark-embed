@@ -1,10 +1,10 @@
 import { defu } from "defu"
 import type { ElementContent } from "hast"
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic"
-import type { DeepReadonly, DeepRequired } from "ts-essentials"
 import { unfurl } from "unfurl.js"
 import * as v from "valibot"
 import type { Transformer } from "../../index.js"
+import type { DeepReadonly, DeepRequired } from "../utils.js"
 import type { Element } from "../utils.js"
 import type {
   OEmbed,
@@ -117,7 +117,9 @@ export type TransformerOEmbedOptions = {
   ) => Element
 }
 
-export const defaultTransformerOEmbedOptions = {
+export const defaultTransformerOEmbedOptions: DeepRequired<
+  DeepReadonly<TransformerOEmbedOptions>
+> = {
   providers: {
     // https://developer.x.com/en/docs/x-for-websites/oembed-api
     "twitter.com": {
@@ -169,7 +171,7 @@ export const defaultTransformerOEmbedOptions = {
       },
       children: [{ type: "text", value: url.href }],
     }) as const,
-} as const satisfies DeepRequired<DeepReadonly<TransformerOEmbedOptions>>
+}
 
 /**
  * A transformer for oEmbed.
@@ -278,7 +280,7 @@ export const transformerOEmbed = (
   }
 }
 
-const html2hast = (html: string) => {
+const html2hast = (html: string): ElementContent[] => {
   const hast = fromHtmlIsomorphic(html, {
     fragment: true,
   }).children
