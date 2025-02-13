@@ -1,5 +1,11 @@
 # @r4ai/remark-embed
 
+## 0.5.0
+
+### Minor Changes
+
+- [#183](https://github.com/r4ai/remark-embed/pull/183) [`a3e044d`](https://github.com/r4ai/remark-embed/commit/a3e044d25f7a3793ae76c6042a8c3b2e040605eb) Thanks [@r4ai](https://github.com/r4ai)! - Fix jsr slow types
+
 ## 0.4.0
 
 ### Minor Changes
