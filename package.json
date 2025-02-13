@@ -51,7 +51,7 @@
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "changeset": "changeset",
     "changeset:version": "changeset version && bun run .github/scripts/sync-package-version.ts",
-    "release": "bun run build && bun run jsr publish --dry-run --allow-slow-types && bun run changeset publish"
+    "release": "bun run build && bun run jsr publish --dry-run && bun run changeset publish"
   },
   "dependencies": {
     "defu": "^6.1.4",
@@ -82,7 +82,6 @@
     "remark-parse": "11.0.0",
     "remark-rehype": "11.1.1",
     "rimraf": "6.0.1",
-    "ts-essentials": "10.0.4",
     "typescript": "5.7.3",
     "unified": "11.0.5",
     "vitest": "3.0.5"

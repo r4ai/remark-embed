@@ -1,5 +1,4 @@
 import type { ElementContent, Properties } from "hast"
-import type { DeepReadonly } from "ts-essentials"
 
 export type Element = {
   /**
@@ -62,3 +61,33 @@ type FilterChildren<Children extends Child[]> = Children extends [
     ? FilterChildren<Rest>
     : [First, ...FilterChildren<Rest>]
   : []
+
+export type DeepRequired<T> = T extends Record<
+  string | number | symbol,
+  unknown
+>
+  ? { [K in keyof T]-?: DeepRequired<T[K]> }
+  : T extends Array<infer U>
+    ? U[] extends T
+      ? Array<DeepRequired<U>>
+      : { [K in keyof T]-?: DeepRequired<T[K]> }
+    : T extends Map<infer K, infer V>
+      ? Map<DeepRequired<K>, DeepRequired<V>>
+      : T extends Set<infer U>
+        ? Set<DeepRequired<U>>
+        : T
+
+export type DeepReadonly<T> = T extends Record<
+  string | number | symbol,
+  unknown
+>
+  ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+  : T extends Array<infer U>
+    ? U[] extends T
+      ? ReadonlyArray<DeepReadonly<U>>
+      : { readonly [K in keyof T]: DeepReadonly<T[K]> }
+    : T extends Map<infer K, infer V>
+      ? ReadonlyMap<DeepReadonly<K>, DeepReadonly<V>>
+      : T extends Set<infer U>
+        ? ReadonlySet<DeepReadonly<U>>
+        : T
