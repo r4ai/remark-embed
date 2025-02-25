@@ -77,7 +77,7 @@
     "jsr": "0.13.3",
     "lefthook": "1.11.0",
     "mdast-util-to-hast": "13.2.0",
-    "msw": "2.7.2",
+    "msw": "2.7.3",
     "rehype-stringify": "10.0.1",
     "remark-parse": "11.0.0",
     "remark-rehype": "11.1.1",
