@@ -24,7 +24,7 @@
         "@vitest/coverage-v8": "3.1.4",
         "dedent": "1.6.0",
         "happy-dom": "17.4.8",
-        "jsr": "0.13.3",
+        "jsr": "0.13.4",
         "lefthook": "1.11.13",
         "mdast-util-to-hast": "13.2.0",
         "msw": "2.8.4",
@@ -519,7 +519,7 @@
 
     "jsonfile": ["jsonfile@4.0.0", "", { "optionalDependencies": { "graceful-fs": "^4.1.6" } }, "sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg=="],
 
-    "jsr": ["jsr@0.13.3", "", { "dependencies": { "kolorist": "^1.8.0", "node-stream-zip": "^1.15.0", "semiver": "^1.1.0" }, "bin": { "jsr": "dist/bin.js" } }, "sha512-iPt9r1lMK8BIdGwLP9/PslqkP8HoU3tn3c26qrQlavC6sgqy7lbJk0wLHbrbKZCD5a7RIomvTivvJTFQrvkIPQ=="],
+    "jsr": ["jsr@0.13.4", "", { "dependencies": { "kolorist": "^1.8.0", "node-stream-zip": "^1.15.0", "semiver": "^1.1.0" }, "bin": { "jsr": "dist/bin.js" } }, "sha512-GJ9Ju8kf2SxH90C1AqANrMKBFlDjrZu1YoFm4SoMCOBOxix3Bvirdg5JB31gbF8FwPBo3196dAaqV0WUjeuq8Q=="],
 
     "kolorist": ["kolorist@1.8.0", "", {}, "sha512-Y+60/zizpJ3HRH8DCss+q95yr6145JXZo46OTpFvDZWLfRCE4qChOyk1b26nMaNpfHHgxagk9dXT5OP0Tfe+dQ=="],
 
