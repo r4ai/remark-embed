@@ -63,7 +63,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@changesets/changelog-github": "0.5.1",
-    "@changesets/cli": "2.29.6",
+    "@changesets/cli": "2.29.7",
     "@testing-library/dom": "10.4.1",
     "@testing-library/jest-dom": "6.8.0",
     "@tsconfig/node16": "16.1.4",
