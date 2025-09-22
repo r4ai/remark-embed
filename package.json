@@ -75,7 +75,7 @@
     "dedent": "1.7.0",
     "happy-dom": "18.0.1",
     "jsr": "0.13.4",
-    "lefthook": "1.13.1",
+    "lefthook": "1.13.2",
     "mdast-util-to-hast": "13.2.0",
     "msw": "2.11.3",
     "rehype-stringify": "10.0.1",
