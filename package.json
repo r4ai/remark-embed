@@ -76,7 +76,7 @@
     "happy-dom": "18.0.1",
     "jsr": "0.13.4",
     "lefthook": "1.13.6",
-    "mdast-util-to-hast": "13.2.0",
+    "mdast-util-to-hast": "13.2.1",
     "msw": "2.12.2",
     "rehype-stringify": "10.0.1",
     "remark-parse": "11.0.0",
